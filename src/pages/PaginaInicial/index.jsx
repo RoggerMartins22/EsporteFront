@@ -92,11 +92,15 @@ function Home() {
                     <div className={styles.detailItem}>
                       <span className={styles.detailLabel}>Data:</span>
                       <span className={styles.detailValue}>
-                        {new Date(nextAppointment.data).toLocaleDateString('pt-BR', {
-                          day: '2-digit',
-                          month: '2-digit',
-                          year: 'numeric',
-                        })}
+                        {(() => {
+                          const [year, month, day] = nextAppointment.data.split('-').map(Number);
+                          const localDate = new Date(year, month - 1, day);
+                          return localDate.toLocaleDateString('pt-BR', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                          });
+                        })()}
                       </span>
                     </div>
                     <div className={styles.detailItem}>

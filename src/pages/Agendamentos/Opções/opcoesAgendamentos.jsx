@@ -7,11 +7,12 @@ import { FaCalendarAlt, FaBan, FaSyncAlt, FaArrowLeft, FaSpinner } from "react-i
 
 const formatDate = (dateString) => {
   if (!dateString) return "N/A";
-  const date = new Date(dateString + 'T00:00:00Z');
-  if (isNaN(date.getTime())) {
-    return "Data Inválida";
-  }
-  return date.toLocaleDateString("pt-BR", {
+
+  const [year, month, day] = dateString.split('-').map(Number);
+
+  const localDate = new Date(year, month - 1, day);
+
+  return localDate.toLocaleDateString("pt-BR", {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric'
@@ -87,8 +88,8 @@ function OpcoesAgendamento() {
       return;
     }
     if (agendamento && agendamento.data === novaData) {
-        setErrorMessage("A nova data não pode ser igual à data atual do agendamento.");
-        return;
+      setErrorMessage("A nova data não pode ser igual à data atual do agendamento.");
+      return;
     }
     setLoadingRenovar(true);
     try {
@@ -111,15 +112,15 @@ function OpcoesAgendamento() {
     let minAllowedDate = today;
 
     if (currentAgendamentoDate) {
-        const agendamentoDate = new Date(currentAgendamentoDate + 'T00:00:00');
+      const agendamentoDate = new Date(currentAgendamentoDate + 'T00:00:00');
 
-        if (!isNaN(agendamentoDate.getTime())) {
-            if (agendamentoDate >= today) {
-                const dayAfterAgendamento = new Date(agendamentoDate.getTime() + 24 * 60 * 60 * 1000);
-                dayAfterAgendamento.setHours(0, 0, 0, 0);
-                minAllowedDate = dayAfterAgendamento;
-            }
+      if (!isNaN(agendamentoDate.getTime())) {
+        if (agendamentoDate >= today) {
+          const dayAfterAgendamento = new Date(agendamentoDate.getTime() + 24 * 60 * 60 * 1000);
+          dayAfterAgendamento.setHours(0, 0, 0, 0);
+          minAllowedDate = dayAfterAgendamento;
         }
+      }
     }
     return minAllowedDate.toISOString().split("T")[0];
   };
@@ -151,9 +152,9 @@ function OpcoesAgendamento() {
         )}
 
         {!agendamento && !errorMessage && !loadingData && (
-             <p className={`${styles.feedbackMessage} ${styles.messageInfo}`}>
-                Nenhum detalhe de agendamento encontrado para este ID.
-            </p>
+          <p className={`${styles.feedbackMessage} ${styles.messageInfo}`}>
+            Nenhum detalhe de agendamento encontrado para este ID.
+          </p>
         )}
 
         {agendamento && (
@@ -190,64 +191,64 @@ function OpcoesAgendamento() {
             </div>
 
             {agendamento.status?.toLowerCase() !== "cancelado" && agendamento.status?.toLowerCase() !== "renovado" && (
-                <div className={styles.actionSection}>
-                    <h2 className={styles.actionHeader}>Opções do Agendamento</h2>
+              <div className={styles.actionSection}>
+                <h2 className={styles.actionHeader}>Opções do Agendamento</h2>
 
-                    {agendamento.status?.toLowerCase() === "concluido" && (
-                        <div className={styles.inputGroup}>
-                            <label htmlFor="novaData" className={styles.inputLabel}>
-                                <FaCalendarAlt /> Nova Data de Renovação:
-                            </label>
-                            <input
-                                type="date"
-                                id="novaData"
-                                value={novaData}
-                                onChange={(e) => setNovaData(e.target.value)}
-                                min={getMinDateForRenewal(agendamento.data)}
-                                disabled={loadingRenovar || loadingCancelar || !!successMessage}
-                                className={styles.dateInputField}
-                                aria-describedby="dataHelp"
-                            />
-                            <small id="dataHelp" className={styles.helpText}>
-                                Selecione a nova data para o agendamento.
-                            </small>
-                        </div>
-                    )}
+                {agendamento.status?.toLowerCase() === "concluido" && (
+                  <div className={styles.inputGroup}>
+                    <label htmlFor="novaData" className={styles.inputLabel}>
+                      <FaCalendarAlt /> Nova Data de Renovação:
+                    </label>
+                    <input
+                      type="date"
+                      id="novaData"
+                      value={novaData}
+                      onChange={(e) => setNovaData(e.target.value)}
+                      min={getMinDateForRenewal(agendamento.data)}
+                      disabled={loadingRenovar || loadingCancelar || !!successMessage}
+                      className={styles.dateInputField}
+                      aria-describedby="dataHelp"
+                    />
+                    <small id="dataHelp" className={styles.helpText}>
+                      Selecione a nova data para o agendamento.
+                    </small>
+                  </div>
+                )}
 
-                    <div className={styles.buttonContainer}>
-                        {(agendamento.status?.toLowerCase() === "agendado" || agendamento.status?.toLowerCase() === "confirmado") && (
-                            <button
-                                onClick={handleCancelar}
-                                className={`${styles.actionButton} ${styles.buttonDanger}`}
-                                disabled={loadingCancelar || loadingRenovar || !!successMessage}
-                                aria-disabled={loadingCancelar || loadingRenovar || !!successMessage}
-                            >
-                                <FaBan /> {loadingCancelar ? "Cancelando..." : "Cancelar Agendamento"}
-                            </button>
-                        )}
+                <div className={styles.buttonContainer}>
+                  {(agendamento.status?.toLowerCase() === "agendado" || agendamento.status?.toLowerCase() === "confirmado") && (
+                    <button
+                      onClick={handleCancelar}
+                      className={`${styles.actionButton} ${styles.buttonDanger}`}
+                      disabled={loadingCancelar || loadingRenovar || !!successMessage}
+                      aria-disabled={loadingCancelar || loadingRenovar || !!successMessage}
+                    >
+                      <FaBan /> {loadingCancelar ? "Cancelando..." : "Cancelar Agendamento"}
+                    </button>
+                  )}
 
-                        {agendamento.status?.toLowerCase() === "concluido" && (
-                            <button
-                                onClick={handleRenovar}
-                                className={`${styles.actionButton} ${styles.buttonPrimary}`}
-                                disabled={loadingRenovar || loadingCancelar || !novaData || !!successMessage}
-                                aria-disabled={loadingRenovar || loadingCancelar || !novaData || !!successMessage}
-                            >
-                                <FaSyncAlt /> {loadingRenovar ? "Renovando..." : "Renovar Agendamento"}
-                            </button>
-                        )}
-                    </div>
+                  {agendamento.status?.toLowerCase() === "concluido" && (
+                    <button
+                      onClick={handleRenovar}
+                      className={`${styles.actionButton} ${styles.buttonPrimary}`}
+                      disabled={loadingRenovar || loadingCancelar || !novaData || !!successMessage}
+                      aria-disabled={loadingRenovar || loadingCancelar || !novaData || !!successMessage}
+                    >
+                      <FaSyncAlt /> {loadingRenovar ? "Renovando..." : "Renovar Agendamento"}
+                    </button>
+                  )}
                 </div>
+              </div>
             )}
 
             <div className={styles.navigationSection}>
-                <button
-                    onClick={() => navigate("/listar")}
-                    className={`${styles.actionButton} ${styles.buttonSecondary}`}
-                    disabled={loadingRenovar || loadingCancelar}
-                >
-                    <FaArrowLeft /> Voltar para Lista
-                </button>
+              <button
+                onClick={() => navigate("/listar")}
+                className={`${styles.actionButton} ${styles.buttonSecondary}`}
+                disabled={loadingRenovar || loadingCancelar}
+              >
+                <FaArrowLeft /> Voltar para Lista
+              </button>
             </div>
           </div>
         )}

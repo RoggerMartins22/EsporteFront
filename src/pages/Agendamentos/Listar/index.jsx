@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
-import { FaArrowLeft, FaPlusCircle, FaSearch, FaFilter } from "react-icons/fa"; 
+import { FaArrowLeft, FaPlusCircle, FaSearch, FaFilter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import api from "../../../services/api.js";
 import styles from "./ListarAgendamentos.module.css";
 
 function ListarAgendamentos() {
-  const [todosAgendamentos, setTodosAgendamentos] = useState([]); 
+  const [todosAgendamentos, setTodosAgendamentos] = useState([]);
   const [agendamentosFiltrados, setAgendamentosFiltrados] = useState([]);
   const [statusDisponiveis, setStatusDisponiveis] = useState([]);
 
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState("");
-  const [consultaRealizada, setConsultaRealizada] = useState(false); 
-  const [selectedStatus, setSelectedStatus] = useState(""); 
+  const [consultaRealizada, setConsultaRealizada] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   async function loadAgendamentos() {
-    setConsultaRealizada(true); 
+    setConsultaRealizada(true);
     setLoading(true);
     setErro("");
-    setTodosAgendamentos([]); 
-    setStatusDisponiveis([]); 
+    setTodosAgendamentos([]);
+    setStatusDisponiveis([]);
     try {
       const { data } = await api.get("/agendamentos/");
       const fetchedAgendamentos = data || [];
@@ -50,7 +50,12 @@ function ListarAgendamentos() {
 
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
-    return new Date(dateString).toLocaleDateString("pt-BR", {
+
+    const [year, month, day] = dateString.split('-').map(Number);
+
+    const localDate = new Date(year, month - 1, day);
+
+    return localDate.toLocaleDateString("pt-BR", {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric'
