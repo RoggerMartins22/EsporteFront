@@ -1,0 +1,470 @@
+/* Variáveis de cores e tipografia consistentes com homePage.module.css */
+:root {
+  --color-primary-dark: #0A433A; /* Verde floresta profundo */
+  --color-primary-medium: #1DA854; /* Verde esmeralda vibrante */
+  --color-primary-light: #E8F5E9; /* Verde menta suave */
+  --color-accent-blue: #0A72B8; /* Azul vivo para destaque */
+  --color-danger-red: #dc3545; /* Vermelho para erros/indisponível */
+  --color-text-dark: #212121; /* Preto quase puro para texto principal */
+  --color-text-medium: #424242; /* Cinza escuro para texto secundário */
+  --color-text-light: #fefefe; /* Branco para texto em fundos escuros */
+  --color-background-light: #F7FAFC; /* Fundo branco-acinzentado muito leve */
+  --color-border-subtle: #CFD8DC; /* Cinza claro para bordas discretas */
+  --color-shadow-light: rgba(0, 0, 0, 0.05); /* Sombra leve */
+  --color-shadow-medium: rgba(0, 0, 0, 0.12); /* Sombra média */
+  --color-shadow-strong: rgba(0, 0, 0, 0.2); /* Sombra forte */
+
+  --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  --spacing-unit: 0.25rem;
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 0.8rem;
+  --border-radius-lg: 1.2rem; /* Para cards e seções */
+
+  --header-height: 4.5rem; /* Altura da navbar/header */
+}
+
+/* Garante o box-sizing e remove margens/paddings padrão */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--color-background-light) 0%, #edf2f7 100%);
+  padding-top: var(--header-height); /* Espaço para a navbar fixa */
+}
+
+.quadrasContainer {
+  flex: 1; /* Ocupa o espaço restante */
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* HEADER DA PÁGINA (Título e Filtro) */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle { /* Reutiliza o estilo de título de seção da Home */
+  font-size: 2.8rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-dark);
+  text-align: left; /* Ajuste para o header da página */
+  margin: 0; /* Remove margem padrão */
+  letter-spacing: -0.04em;
+}
+
+.filtroContainer {
+  display: flex;
+  align-items: center;
+  /* Removido 'gap' aqui para permitir controle mais fino entre label e select */
+  background-color: var(--color-white);
+  padding: 0.75rem 1.25rem; /* Padding horizontal e vertical */
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 4px 8px var(--color-shadow-light);
+  transition: all 0.3s ease;
+}
+
+.filtroContainer:focus-within {
+  border-color: var(--color-primary-medium);
+  box-shadow: 0 4px 12px rgba(29, 168, 84, 0.2);
+}
+
+.filtroLabel {
+  font-size: 1rem;
+  color: var(--color-text-medium);
+  font-weight: var(--font-weight-medium);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Gap para o ícone e texto do label */
+  white-space: nowrap;
+  margin-right: -0.30rem; /* Margem para separar o label do select */
+}
+
+.filtroIcon {
+  color: var(--color-primary-medium);
+  font-size: 1.1em;
+}
+
+.filtroSelect {
+  flex-grow: 1;
+  /* Ajuste de padding para a seta customizada */
+  padding: 0.4rem 1.8rem 0.4rem 0.5rem; /* Top/bottom, right (for arrow), left, right (for arrow) */
+  border: none;
+  background-color: transparent;
+  font-family: var(--font-base);
+  font-size: 1rem;
+  color: var(--color-text-dark);
+  appearance: none; /* Remove seta padrão do select */
+  /* Seta customizada */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23424242'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center; /* Posição da seta */
+  background-size: 1.2em;
+  cursor: pointer;
+}
+
+.filtroSelect:focus {
+  outline: none;
+}
+
+/* GRID DE QUADRAS */
+.quadrasGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.quadraCardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%; /* Garante que o link ocupe toda a altura do grid item */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.quadraCardLink:hover,
+.quadraCardLink:focus-visible {
+  transform: translateY(-8px);
+  filter: drop-shadow(0 15px 40px var(--color-shadow-medium));
+  outline: none;
+}
+
+.quadraCard { /* Adota estilos de card da Home */
+  background-color: var(--color-white); /* Fundo branco para o card */
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  filter: drop-shadow(0 10px 25px var(--color-shadow-light));
+  height: 100%; /* Permite que o card se estique */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Para empurrar disponibilidade para o fundo */
+  border: 1px solid var(--color-border-subtle);
+  transition: border-color 0.2s ease;
+}
+
+.quadraCard:hover {
+  border-color: var(--color-primary-medium); /* Borda fica verde no hover */
+}
+
+.quadraCardDisabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  filter: grayscale(80%) drop-shadow(0 10px 25px var(--color-shadow-light)); /* Visualmente indica desativação */
+  pointer-events: none; /* Desativa eventos de mouse */
+}
+
+.cardContent {
+  margin-bottom: 1.5rem;
+}
+
+.quadraNome {
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-dark);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.quadraInfo, .esporteInfo {
+  display: flex;
+  align-items: flex-start; /* Alinha o texto ao topo se houver quebra de linha */
+  gap: 0.8rem;
+  font-size: 1rem;
+  color: var(--color-text-medium);
+  margin-bottom: 0.6rem;
+}
+
+.cardInfoIcon {
+  color: var(--color-primary-medium);
+  font-size: 1.1em;
+  flex-shrink: 0; /* Impede que o ícone diminua */
+  margin-top: 2px; /* Pequeno ajuste de alinhamento */
+}
+
+.esporteInfo strong {
+  color: var(--color-primary-dark);
+  font-weight: var(--font-weight-semibold);
+}
+
+.disponibilidadeContainer {
+  display: flex;
+  justify-content: flex-end; /* Alinha o badge à direita */
+  margin-top: auto; /* Empurra para o final do card */
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-light);
+  white-space: nowrap;
+}
+
+.badgeIcon {
+  font-size: 1em;
+}
+
+.disponivel {
+  background-color: var(--color-primary-medium);
+}
+
+.indisponivel {
+  background-color: var(--color-danger-red); /* Cor de perigo para indisponível */
+}
+
+.warningMessage {
+  font-size: 0.9rem;
+  color: var(--color-danger-red);
+  font-style: italic;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* ESTADOS DE FEEDBACK (Loading, Erro, Vazio) */
+.feedbackContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px; /* Garante altura mínima para feedback */
+  gap: 1.5rem;
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  filter: drop-shadow(0 8px 20px var(--color-shadow-light));
+  border: 1px solid var(--color-border-subtle);
+  max-width: 500px;
+  margin: 3rem auto;
+}
+
+.feedbackIcon {
+  font-size: 3.5rem;
+  color: var(--color-primary-medium);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorIcon {
+  color: var(--color-danger-red);
+}
+
+.emptyIcon {
+  color: var(--color-text-medium); /* Cor para ícone de vazio */
+}
+
+.feedbackMensagem {
+  font-size: 1.2rem;
+  color: var(--color-text-medium);
+  line-height: 1.5;
+}
+
+.errorMessageText {
+  color: var(--color-danger-red);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* BOTÕES (Consistentes com o Dashboard e Home) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--btn-border-radius);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 4px 8px var(--color-shadow-light);
+  white-space: nowrap;
+}
+
+.btnIcon {
+  font-size: var(--btn-icon-size);
+}
+
+.btnPrimary {
+  background-color: var(--color-primary-medium);
+  color: var(--color-text-light);
+  border: 2px solid var(--color-primary-medium);
+}
+
+.btnPrimary:hover,
+.btnPrimary:focus-visible {
+  background-color: #179146;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px var(--color-shadow-medium);
+  outline: none;
+}
+
+.btnOutline {
+  background-color: transparent;
+  color: var(--color-primary-medium);
+  border: 2px solid var(--color-primary-medium);
+}
+
+.btnOutline:hover,
+.btnOutline:focus-visible {
+  background-color: var(--color-primary-medium);
+  color: var(--color-text-light);
+  border-color: var(--color-primary-medium);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px var(--color-shadow-medium);
+  outline: none;
+}
+
+.btnSmall { /* Botão menor, por exemplo, para "Limpar Filtro" */
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  gap: 0.5rem;
+}
+
+.actionsContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 992px) {
+  .quadrasContainer {
+    padding: 2.5rem 1.5rem;
+    gap: 2.5rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+
+  .filtroContainer {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .quadrasGrid {
+    grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    gap: 2rem;
+  }
+
+  .quadraCard {
+    padding: 1.8rem;
+  }
+
+  .quadraNome {
+    font-size: 1.6rem;
+  }
+
+  .quadraInfo, .esporteInfo {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .quadrasContainer {
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .filtroSelect {
+    font-size: 0.9rem;
+    padding: 0.4rem 1.5rem 0.4rem 0.5rem; /* Ajusta padding da seta em telas menores */
+    background-position: right 0.3rem center; /* Ajusta posição da seta */
+  }
+
+  .quadraCard {
+    padding: 1.5rem;
+  }
+
+  .quadraNome {
+    font-size: 1.4rem;
+  }
+
+  .quadraInfo, .esporteInfo {
+    font-size: 0.9rem;
+  }
+
+  .badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .feedbackContainer {
+    min-height: 250px;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .feedbackIcon {
+    font-size: 3rem;
+  }
+
+  .feedbackMensagem {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .btnSmall {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}

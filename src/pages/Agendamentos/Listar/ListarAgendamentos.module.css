@@ -1,0 +1,455 @@
+/* src/pages/Agendamentos/Listar/ListarAgendamentos.module.css */
+
+/* Variáveis de Cores e Tipografia (CONSOLIDADAS COM OUTRAS PÁGINAS) */
+:root {
+  --color-primary-dark: #0A433A;
+  --color-primary-medium: #1DA854;
+  --color-primary-light: #E8F5E9;
+  --color-accent-blue: #0A72B8;
+  --color-danger-red: #dc3545;
+  --color-success-green: #28a745;
+  --color-text-dark: #212121;
+  --color-text-medium: #424242;
+  --color-text-light: #fefefe;
+  --color-white: #FFFFFF;
+  --color-background-light: #F7FAFC;
+  --color-border-subtle: #CFD8DC;
+  --color-shadow-light: rgba(0, 0, 0, 0.05);
+  --color-shadow-medium: rgba(0, 0, 0, 0.12);
+  --color-shadow-strong: rgba(0, 0, 0, 0.2);
+  --color-info-text: #6c757d;
+  --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+  --spacing-3xl: 3rem;
+  --spacing-4xl: 4rem;
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 0.75rem;
+  --border-radius-lg: 1.25rem;
+  --header-height: 4.5rem;
+  --input-height: 3.25rem;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--color-background-light);
+}
+
+.pageContainer {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: var(--header-height); 
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+  background-color: var(--color-background-light);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.listaContainer {
+  max-width: 900px;
+  width: 100%;
+  margin-top: var(--spacing-3xl);
+  margin-bottom: var(--spacing-3xl);
+  padding: var(--spacing-3xl) var(--spacing-xl);
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 10px 25px var(--color-shadow-light);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-dark);
+}
+
+.listaHeader {
+  margin-bottom: var(--spacing-2xl);
+  text-align: center;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.listaTitulo {
+  font-size: 2.2rem;
+  color: var(--color-primary-dark);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+}
+
+/* Contêiner para filtro e botão de consulta */
+.filterAndActions {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Alinha o botão com a parte inferior do select */
+  gap: var(--spacing-lg); /* Espaço entre o filtro e o botão */
+  margin-bottom: var(--spacing-3xl);
+  flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+}
+
+/* Grupo do filtro (label + select) */
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm); /* Espaço entre label e select */
+  flex-grow: 1; /* Permite que o grupo cresça */
+  max-width: 300px; /* Limite de largura em telas maiores, para não esticar demais */
+}
+
+/* Label do filtro (com ícone) */
+.filterLabel {
+  display: flex; /* Para alinhar o ícone com o texto */
+  align-items: center;
+  gap: var(--spacing-xs); /* Espaço pequeno entre ícone e texto */
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-medium);
+}
+
+/* Ícone do filtro */
+.filterIcon {
+  color: var(--color-primary-medium);
+  font-size: 1.1em; /* Tamanho relativo ao texto do label */
+}
+
+/* Select do filtro */
+.filterSelect {
+  height: var(--input-height); /* Altura consistente com inputs */
+  padding: var(--spacing-sm) var(--spacing-md); /* Padding interno */
+  font-size: 1rem; /* Tamanho da fonte consistente */
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-white);
+  color: var(--color-text-dark);
+  appearance: none; /* Remove o estilo padrão do select */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23424242'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Seta personalizada */
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-md) center;
+  background-size: 1.2em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%; /* Ocupa a largura total do seu contêiner */
+}
+
+.filterSelect:focus,
+.filterSelect:focus-visible {
+  outline: none;
+  border-color: var(--color-primary-medium);
+  box-shadow: 0 0 0 3px rgba(29, 168, 84, 0.2);
+}
+
+.filterSelect:disabled {
+  background-color: var(--color-background-light);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* Base para botões (consistente com outras páginas) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 4px 8px var(--color-shadow-light);
+  white-space: nowrap;
+  border: 2px solid transparent;
+}
+
+.btn:hover:not(:disabled),
+.btn:focus-visible:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px var(--color-shadow-medium);
+  outline: none;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(0px);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btnIcon {
+  font-size: 1.1em;
+}
+
+/* Botão Consultar */
+.btnConsultar {
+  background-color: var(--color-primary-medium);
+  color: var(--color-text-light);
+  border-color: var(--color-primary-medium);
+  height: var(--input-height); /* Altura consistente com o select */
+  padding: 0 var(--spacing-2xl); /* Padding horizontal ajustado */
+  flex-shrink: 0;
+  min-width: 180px;
+}
+.btnConsultar:hover,
+.btnConsultar:focus-visible {
+  background-color: #179146;
+  border-color: #179146;
+}
+
+/* Mensagens de Feedback */
+.listaMensagem,
+.erroApi {
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.infoMessage {
+  color: var(--color-info-text);
+  background-color: #f0f4f7;
+  border: 1px solid #d4dae0;
+}
+
+.loadingMessage {
+  color: var(--color-text-medium);
+  background-color: transparent;
+  border: 1px dashed var(--color-border-subtle);
+  font-style: normal;
+}
+
+.listaVazio {
+  color: var(--color-text-medium);
+  background-color: var(--color-background-light);
+  border: 1px solid var(--color-border-subtle);
+  font-style: normal;
+}
+
+.erroApi {
+  color: var(--color-danger-red);
+  background-color: #ffebe9;
+  border: 1px solid #ffccc7;
+  font-weight: var(--font-weight-semibold);
+}
+
+.listaAgendamentos {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-3xl) 0;
+}
+
+/* Estilo do Item da Lista */
+.listaItem {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-subtle);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  box-shadow: 0 4px 10px var(--color-shadow-light);
+}
+
+.listaItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px var(--color-shadow-medium);
+  border-color: var(--color-primary-medium);
+  background-color: var(--color-white);
+}
+
+.itemInfo {
+  flex-grow: 1;
+}
+
+.itemInfo p {
+  margin: var(--spacing-xs) 0;
+  font-size: 0.95rem;
+  color: var(--color-text-medium);
+  line-height: 1.5;
+}
+
+.itemInfo p strong {
+  color: var(--color-text-dark);
+  font-weight: var(--font-weight-semibold);
+  margin-right: var(--spacing-xs);
+}
+
+.itemActions {
+  flex-shrink: 0;
+}
+
+/* Footer da Lista (Botões de Ação Inferiores) */
+.listaFooter {
+  margin-top: var(--spacing-3xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.listaBotoes {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+/* Botão Voltar */
+.btnVoltar {
+  background-color: transparent;
+  color: var(--color-primary-medium);
+  border-color: var(--color-primary-medium);
+}
+.btnVoltar:hover,
+.btnVoltar:focus-visible {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+/* Botão Agendar Novo */
+.btnAgendar {
+  background-color: var(--color-primary-medium);
+  color: var(--color-text-light);
+  border-color: var(--color-primary-medium);
+}
+.btnAgendar:hover,
+.btnAgendar:focus-visible {
+  background-color: #179146;
+  border-color: #179146;
+}
+
+/* Botão Opções (Estilo ajustado para ser mais consistente) */
+.btnOpcoes {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary-medium);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--border-radius-sm);
+  box-shadow: none;
+  transform: none;
+}
+.btnOpcoes:hover,
+.btnOpcoes:focus-visible {
+  background-color: var(--color-primary-medium);
+  color: var(--color-text-light);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Responsividade (Ajustado para os breakpoints globais) */
+
+@media (max-width: 992px) {
+  .listaContainer {
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+  }
+  .listaTitulo {
+    font-size: 2rem;
+  }
+  .filterSelect {
+    font-size: 0.9rem;
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+  .listaTitulo {
+    font-size: 1.8rem;
+  }
+  .filterAndActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+  .filterGroup, .filterSelect, .btnConsultar {
+    width: 100%;
+    max-width: none;
+    min-width: unset;
+  }
+  .listaBotoes {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  .btnVoltar,
+  .btnAgendar,
+  .btnConsultar {
+    width: 100%;
+  }
+  .listaItem {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+  .itemInfo {
+    width: 100%;
+  }
+  .itemActions {
+    width: 100%;
+    margin-top: var(--spacing-md);
+    display: flex;
+    justify-content: flex-end;
+  }
+  .btnOpcoes {
+    width: auto;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .listaContainer {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+  .listaTitulo {
+    font-size: 1.6rem;
+  }
+  .listaMensagem, .erroApi {
+    font-size: 0.85rem;
+  }
+  .itemInfo p {
+    font-size: 0.85rem;
+  }
+  .btnOpcoes {
+    font-size: 0.8rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}

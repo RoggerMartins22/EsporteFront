@@ -1,0 +1,494 @@
+:root {
+  --color-primary-dark: #0A433A;
+  --color-primary-medium: #1DA854;
+  --color-primary-light: #E8F5E9;
+  --color-accent-blue: #0A72B8;
+  --color-danger-red: #dc3545;
+  --color-success-green: #28a745;
+  --color-text-dark: #212121;
+  --color-text-medium: #424242;
+  --color-text-light: #fefefe;
+  --color-white: #FFFFFF;
+  --color-background-light: #F7FAFC;
+  --color-border-subtle: #CFD8DC;
+  --color-shadow-light: rgba(0, 0, 0, 0.05);
+  --color-shadow-medium: rgba(0, 0, 0, 0.12);
+  --color-shadow-strong: rgba(0, 0, 0, 0.2);
+  --color-bg-page-agendar: #e8f5e9;
+  --color-card-bg: #FFFFFF;
+  --color-horario-btn-bg: #e0f2f1;
+  --color-horario-btn-border: #95d5b2;
+  --color-horario-btn-hover-bg: #c1e0dd;
+  --color-input-border: #cfd8dc;
+  --color-input-focus-border: var(--color-primary-medium);
+  --color-text-label-agendar: #34495e;
+  --color-text-info: #6c757d;
+  --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+  --spacing-3xl: 3rem;
+  --spacing-4xl: 4rem;
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 0.75rem;
+  --border-radius-lg: 1.25rem;
+  --header-height: 4.5rem;
+  --input-height: 3.25rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--color-bg-page-agendar);
+}
+
+.pageWrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: var(--header-height);
+  padding: var(--spacing-xl);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 600px;
+  margin-top: var(--spacing-3xl);
+  margin-bottom: var(--spacing-3xl);
+  padding: var(--spacing-3xl) var(--spacing-xl);
+  background-color: var(--color-card-bg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 10px 25px var(--color-shadow-light);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.formTitle {
+  font-size: 2.2rem;
+  color: var(--color-primary-dark);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+}
+
+.agendarForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 550px) {
+  .formGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-semibold);
+  font-size: 1rem;
+  color: var(--color-text-label-agendar);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.labelIcon {
+  color: var(--color-primary-medium);
+  font-size: 1.1em;
+}
+
+.formInput,
+.formSelect {
+  height: var(--input-height);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 1rem;
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-white);
+  color: var(--color-text-dark);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.formSelect {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23424242'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-md) center;
+  background-size: 1.2em;
+  cursor: pointer;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formInput:focus-visible,
+.formSelect:focus-visible {
+  border-color: var(--color-input-focus-border);
+  box-shadow: 0 0 0 3px rgba(29, 168, 84, 0.2);
+  outline: none;
+}
+.formInput:disabled,
+.formSelect:disabled {
+  background-color: var(--color-background-light);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.horariosSection {
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--spacing-xl);
+  margin-top: var(--spacing-md);
+  text-align: center;
+}
+
+.horariosTitle {
+  font-size: 1.5rem;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.instrucaoHorarios {
+  font-size: 0.9rem;
+  color: var(--color-text-medium);
+  font-style: italic;
+  margin-bottom: var(--spacing-lg);
+}
+
+.botoesHorarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  margin-top: var(--spacing-md);
+}
+
+.btnHorario {
+  background-color: var(--color-horario-btn-bg);
+  border: 1px solid var(--color-horario-btn-border);
+  color: var(--color-primary-dark);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  min-width: 100px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.btnHorario:hover:not(.selected) {
+  background-color: var(--color-horario-btn-hover-bg);
+  border-color: var(--color-primary-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.btnHorario:focus-visible:not(.selected) {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+.btnHorario.selected {
+  background-color: var(--color-primary-medium);
+  color: var(--color-text-light);
+  border-color: var(--color-primary-dark);
+  font-weight: var(--font-weight-bold);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transform: translateY(-1px);
+}
+
+.horarioSelecionadoDisplay {
+  margin-top: var(--spacing-lg);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  color: var(--color-text-label-agendar);
+  padding: var(--spacing-md);
+  background-color: var(--color-primary-light);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-primary-medium);
+}
+
+.errorMessage,
+.infoMessage {
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-size: 0.95rem;
+}
+.errorMessage {
+  color: var(--color-danger-red);
+  background-color: #ffebe9;
+  border: 1px solid #ffccc7;
+}
+.errorIcon {
+  color: var(--color-danger-red);
+  font-size: 1.2em;
+}
+.infoMessage {
+  color: var(--color-text-info);
+  background-color: #f0f4f7;
+  border: 1px solid #d4dae0;
+}
+
+.formActions {
+  margin-top: var(--spacing-3xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-size: 1rem;
+  line-height: 1;
+  box-shadow: 0 4px 8px var(--color-shadow-light);
+  flex-grow: 1;
+  min-width: 120px;
+}
+
+.btn:hover:not(:disabled),
+.btn:focus-visible:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px var(--color-shadow-medium);
+  outline: none;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(0px);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btnPrimary {
+  background-color: var(--color-primary-medium);
+  color: var(--color-text-light);
+  border-color: var(--color-primary-medium);
+}
+.btnPrimary:hover:not(:disabled) {
+  background-color: #179146;
+  border-color: #179146;
+}
+
+.btnSecondary {
+  background-color: transparent;
+  color: var(--color-primary-medium);
+  border-color: var(--color-primary-medium);
+}
+.btnSecondary:hover:not(:disabled) {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: var(--spacing-md);
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background: var(--color-white);
+  padding: var(--spacing-3xl) var(--spacing-2xl);
+  border-radius: var(--border-radius-lg);
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 15px 40px var(--color-shadow-strong);
+  text-align: center;
+  color: var(--color-text-dark);
+  animation: fadeInScaleUp 0.3s ease-out forwards;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.modalIconSuccess {
+  font-size: 5rem;
+  color: var(--color-success-green);
+  margin-bottom: var(--spacing-xl);
+}
+
+.modalTitle {
+  font-size: 1.8rem;
+  color: var(--color-primary-dark);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.modalText {
+  font-size: 1.1rem;
+  color: var(--color-text-medium);
+  margin-bottom: var(--spacing-2xl);
+  line-height: 1.5;
+}
+
+.btnModalConfirm {
+  background-color: var(--color-success-green);
+  color: var(--color-text-light);
+  padding: var(--spacing-md) var(--spacing-3xl);
+  width: 100%;
+  border-color: var(--color-success-green);
+}
+.btnModalConfirm:hover:not(:disabled) {
+  background-color: #218838;
+  border-color: #218838;
+}
+
+@keyframes fadeInScaleUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+  .pageWrapper {
+    padding: var(--spacing-lg);
+  }
+
+  .formContainer {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  .formTitle {
+    font-size: 1.8rem;
+  }
+
+  .horariosTitle {
+    font-size: 1.3rem;
+  }
+
+  .btnHorario {
+    min-width: unset;
+    flex-grow: 1;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.85rem;
+  }
+
+  .formActions {
+    flex-direction: column-reverse;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .btnSecondary {
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .pageWrapper {
+    padding: var(--spacing-md);
+  }
+
+  .formContainer {
+    padding: var(--spacing-xl) var(--spacing-sm);
+  }
+
+  .formTitle {
+    font-size: 1.6rem;
+  }
+
+  .horariosTitle {
+    font-size: 1.2rem;
+  }
+
+  .formInput,
+  .formSelect {
+    height: 3rem;
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: 0.9rem;
+  }
+
+  .modalContent {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  .modalIconSuccess {
+    font-size: 4rem;
+  }
+
+  .modalTitle {
+    font-size: 1.5rem;
+  }
+
+  .modalText {
+    font-size: 1rem;
+  }
+}
