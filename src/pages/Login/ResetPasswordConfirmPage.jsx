@@ -19,13 +19,15 @@ function ResetPasswordConfirmPage() {
   const redirectTimerId = useRef(null);
 
   useEffect(() => {
-    newPasswordRef.current?.focus();
+    if (!successMessage) {
+      newPasswordRef.current?.focus();
+    }
     return () => {
       if (redirectTimerId.current) {
         clearTimeout(redirectTimerId.current);
       }
     };
-  }, []);
+  }, [successMessage]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -73,67 +75,71 @@ function ResetPasswordConfirmPage() {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.resetContainer}>
-        <Link to="/login" className={styles.backToLoginLink}>
-          <FaArrowLeft className={styles.backIcon} />
-          Voltar para o Login
-        </Link>
-        <header className={styles.formHeader}>
-          <FaKey className={styles.headerIcon} />
-          <h2 className={styles.pageTitle}>Redefinir Senha</h2>
-        </header>
+        {!successMessage && (
+          <Link to="/login" className={styles.backToLoginLink}>
+            <FaArrowLeft className={styles.backIcon} />
+            Voltar para o Login
+          </Link>
+        )}
 
         {!successMessage ? (
-          <form className={styles.resetForm} onSubmit={handleSubmit} noValidate>
-            <p className={styles.instructions}>
-              Crie uma nova senha para sua conta. Ela deve ter no mínimo 8 caracteres, incluindo letras maiúsculas, minúsculas e números.
-            </p>
-            <div className={styles.formGroup}>
-              <label htmlFor="new-password" className={styles.formLabel}>Nova Senha</label>
-              <div className={styles.passwordInputWrapper}>
-                <input
-                  id="new-password"
-                  ref={newPasswordRef}
-                  type={showPassword ? "text" : "password"}
-                  value={newPassword}
-                  onChange={(e) => { setNewPassword(e.target.value); setError(''); }}
-                  placeholder="Digite sua nova senha"
-                  className={`${styles.inputField} ${error && (error.toLowerCase().includes("senha") || error.toLowerCase().includes("ambos") || error.toLowerCase().includes("insegura")) ? styles.inputError : ""}`}
-                  disabled={loading}
-                />
-                <button type="button" onClick={() => setShowPassword(!showPassword)} className={styles.passwordVisibilityToggle} aria-label={showPassword ? "Esconder senha" : "Mostrar senha"}>
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
-              </div>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="confirm-password" className={styles.formLabel}>Confirmar Nova Senha</label>
-               <div className={styles.passwordInputWrapper}>
-                <input
-                  id="confirm-password"
-                  type={showConfirmPassword ? "text" : "password"}
-                  value={confirmPassword}
-                  onChange={(e) => { setConfirmPassword(e.target.value); setError(''); }}
-                  placeholder="Confirme sua nova senha"
-                  className={`${styles.inputField} ${error && (error.toLowerCase().includes("senha") || error.toLowerCase().includes("ambos") || error.toLowerCase().includes("coincidem")) ? styles.inputError : ""}`}
-                  disabled={loading}
-                />
-                 <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className={styles.passwordVisibilityToggle} aria-label={showConfirmPassword ? "Esconder senha" : "Mostrar senha"}>
-                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
-              </div>
-            </div>
-
-            {error && (
-              <p className={styles.errorMessageDisplay}>
-                <FaExclamationCircle className={styles.errorIcon} /> {error}
+          <>
+            <header className={styles.formHeader}>
+              <FaKey className={styles.headerIcon} />
+              <h2 className={styles.pageTitle}>Redefinir Senha</h2>
+            </header>
+            <form className={styles.resetForm} onSubmit={handleSubmit} noValidate>
+              <p className={styles.instructions}>
+                Crie uma nova senha para sua conta. Ela deve ter no mínimo 8 caracteres, incluindo letras maiúsculas, minúsculas e números.
               </p>
-            )}
+              <div className={styles.formGroup}>
+                <label htmlFor="new-password" className={styles.formLabel}>Nova Senha</label>
+                <div className={styles.passwordInputWrapper}>
+                  <input
+                    id="new-password"
+                    ref={newPasswordRef}
+                    type={showPassword ? "text" : "password"}
+                    value={newPassword}
+                    onChange={(e) => { setNewPassword(e.target.value); setError(''); }}
+                    placeholder="Digite sua nova senha"
+                    className={`${styles.inputField} ${error && (error.toLowerCase().includes("senha") || error.toLowerCase().includes("ambos") || error.toLowerCase().includes("insegura")) ? styles.inputError : ""}`}
+                    disabled={loading}
+                  />
+                  <button type="button" onClick={() => setShowPassword(!showPassword)} className={styles.passwordVisibilityToggle} aria-label={showPassword ? "Esconder senha" : "Mostrar senha"}>
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+              </div>
 
-            <button type="submit" className={`${styles.btn} ${styles.btnSubmit}`} disabled={loading}>
-              {loading ? 'Salvando...' : 'Salvar Nova Senha'}
-            </button>
-          </form>
+              <div className={styles.formGroup}>
+                <label htmlFor="confirm-password" className={styles.formLabel}>Confirmar Nova Senha</label>
+                  <div className={styles.passwordInputWrapper}>
+                  <input
+                    id="confirm-password"
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={(e) => { setConfirmPassword(e.target.value); setError(''); }}
+                    placeholder="Confirme sua nova senha"
+                    className={`${styles.inputField} ${error && (error.toLowerCase().includes("senha") || error.toLowerCase().includes("ambos") || error.toLowerCase().includes("coincidem")) ? styles.inputError : ""}`}
+                    disabled={loading}
+                  />
+                    <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className={styles.passwordVisibilityToggle} aria-label={showConfirmPassword ? "Esconder senha" : "Mostrar senha"}>
+                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+              </div>
+
+              {error && (
+                <p className={styles.errorMessageDisplay}>
+                  <FaExclamationCircle className={styles.errorIcon} /> {error}
+                </p>
+              )}
+
+              <button type="submit" className={`${styles.btn} ${styles.btnSubmit}`} disabled={loading}>
+                {loading ? 'Salvando...' : 'Salvar Nova Senha'}
+              </button>
+            </form>
+          </>
         ) : (
           <div className={styles.successMessageDisplay}>
             <FaCheckCircle className={styles.successIcon} />
@@ -145,9 +151,6 @@ function ResetPasswordConfirmPage() {
             >
               Ir para Login
             </button>
-            <p className={styles.redirectNotice}>
-              Você também será redirecionado automaticamente em alguns segundos.
-            </p>
           </div>
         )}
       </div>
