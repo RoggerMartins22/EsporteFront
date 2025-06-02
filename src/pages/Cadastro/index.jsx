@@ -6,7 +6,7 @@ import { FaUserPlus, FaCheckCircle, FaExclamationCircle, FaArrowLeft } from "rea
 
 const formatCpfDisplay = (value) => {
   if (!value) return "";
-  const digits = value.replace(/\D/g, "").slice(0, 11); 
+  const digits = value.replace(/\D/g, "").slice(0, 11);
 
   if (digits.length <= 3) return digits;
   if (digits.length <= 6) return `${digits.slice(0, 3)}.${digits.slice(3)}`;
@@ -14,14 +14,13 @@ const formatCpfDisplay = (value) => {
   return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9)}`;
 };
 
-
 function Cadastro() {
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const cpfInputRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const [rawCpfValue, setRawCpfValue] = useState(""); 
+  const [rawCpfValue, setRawCpfValue] = useState("");
   const [formattedCpfDisplay, setFormattedCpfDisplay] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -69,14 +68,14 @@ function Cadastro() {
       return;
     }
     if (!/\S+@\S+\.\S+/.test(email)) {
-        setError("Formato de e-mail inválido.");
-        emailRef.current?.focus();
-        return;
+      setError("Formato de e-mail inválido.");
+      emailRef.current?.focus();
+      return;
     }
     if (senha.length < 6) {
-        setError("A senha deve ter pelo menos 6 caracteres.");
-        passwordRef.current?.focus();
-        return;
+      setError("A senha deve ter pelo menos 6 caracteres.");
+      passwordRef.current?.focus();
+      return;
     }
 
     setLoading(true);
@@ -86,7 +85,7 @@ function Cadastro() {
       await api.post("/usuario/cadastrar", {
         nome,
         email,
-        cpf, 
+        cpf,
         senha,
       });
 
@@ -123,6 +122,10 @@ function Cadastro() {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.cadastroContainer}>
+        <Link to="/" className={styles.backLink}>
+          <FaArrowLeft className={styles.backIcon} />
+          Voltar para o Início
+        </Link>
         <header className={styles.formHeader}>
           <FaUserPlus className={styles.headerIcon} />
           <h2 className={styles.cadastroTitle}>Criar Nova Conta</h2>
@@ -138,9 +141,9 @@ function Cadastro() {
               placeholder="Seu nome completo"
               required
               disabled={loading}
-              className={`${styles.inputField} ${error && error.toLowerCase().includes("nome") ? styles.inputError : ""}`}
+              className={`${styles.inputField} ${error && (error.toLowerCase().includes("nome") || error.toLowerCase().includes("obrigatórios")) ? styles.inputError : ""}`}
               onChange={clearErrorOnChange}
-              aria-invalid={error && error.toLowerCase().includes("nome") ? "true" : "false"}
+              aria-invalid={error && (error.toLowerCase().includes("nome") || error.toLowerCase().includes("obrigatórios")) ? "true" : "false"}
               aria-describedby={error ? "errorMessage" : undefined}
             />
           </div>
@@ -154,9 +157,9 @@ function Cadastro() {
               placeholder="seu@email.com"
               required
               disabled={loading}
-              className={`${styles.inputField} ${error && error.toLowerCase().includes("email") ? styles.inputError : ""}`}
+              className={`${styles.inputField} ${error && (error.toLowerCase().includes("e-mail") || error.toLowerCase().includes("obrigatórios")) ? styles.inputError : ""}`}
               onChange={clearErrorOnChange}
-              aria-invalid={error && error.toLowerCase().includes("email") ? "true" : "false"}
+              aria-invalid={error && (error.toLowerCase().includes("e-mail") || error.toLowerCase().includes("obrigatórios")) ? "true" : "false"}
               aria-describedby={error ? "errorMessage" : undefined}
             />
           </div>
@@ -166,15 +169,15 @@ function Cadastro() {
             <input
               id="cpf"
               ref={cpfInputRef}
-              type="text" 
+              type="text"
               placeholder="000.000.000-00"
               required
               disabled={loading}
-              className={`${styles.inputField} ${error && error.toLowerCase().includes("cpf") ? styles.inputError : ""}`}
+              className={`${styles.inputField} ${error && (error.toLowerCase().includes("cpf") || error.toLowerCase().includes("obrigatórios")) ? styles.inputError : ""}`}
               value={formattedCpfDisplay}
               onChange={handleCpfInputChange}
               maxLength={14}
-              aria-invalid={error && error.toLowerCase().includes("cpf") ? "true" : "false"}
+              aria-invalid={error && (error.toLowerCase().includes("cpf") || error.toLowerCase().includes("obrigatórios")) ? "true" : "false"}
               aria-describedby={error ? "errorMessage" : undefined}
             />
           </div>
@@ -188,14 +191,13 @@ function Cadastro() {
               placeholder="Crie uma senha (mín. 6 caracteres)"
               required
               disabled={loading}
-              className={`${styles.inputField} ${error && error.toLowerCase().includes("senha") ? styles.inputError : ""}`}
+              className={`${styles.inputField} ${error && (error.toLowerCase().includes("senha") || error.toLowerCase().includes("obrigatórios")) ? styles.inputError : ""}`}
               onChange={clearErrorOnChange}
               minLength={6}
-              aria-invalid={error && error.toLowerCase().includes("senha") ? "true" : "false"}
+              aria-invalid={error && (error.toLowerCase().includes("senha") || error.toLowerCase().includes("obrigatórios")) ? "true" : "false"}
               aria-describedby={error ? "errorMessage" : undefined}
             />
           </div>
-
 
           {error && (
             <p id="errorMessage" role="alert" className={styles.errorMessage}>
@@ -215,7 +217,7 @@ function Cadastro() {
         <p className={styles.loginPrompt}>
           Já possui uma conta?{" "}
           <Link to="/login" className={styles.loginLink}>
-             <FaArrowLeft className={styles.linkIcon}/> Faça Login
+            <FaArrowLeft className={styles.linkIcon}/> Faça Login
           </Link>
         </p>
       </div>

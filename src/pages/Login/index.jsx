@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api.js";
 import styles from "./login.module.css";
-import { FaSignInAlt, FaUserPlus, FaExclamationCircle } from "react-icons/fa";
+import { FaSignInAlt, FaUserPlus, FaExclamationCircle, FaArrowLeft } from "react-icons/fa";
 
 const formatCpfDisplay = (value) => {
   if (!value) return "";
@@ -101,6 +101,10 @@ function Login() {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.loginContainer}>
+        <Link to="/" className={styles.backLink}>
+          <FaArrowLeft className={styles.backIcon} />
+          Voltar para o Início
+        </Link>
         <header className={styles.formHeader}>
           <FaSignInAlt className={styles.headerIcon} />
           <h2 className={styles.loginTitle}>Acessar Conta</h2>
@@ -114,7 +118,7 @@ function Login() {
               ref={cpfInputRef}
               type="text"
               name="cpf"
-              placeholder="Digite seu CPF"
+              placeholder="000.000.000-00"
               className={`${styles.inputField} ${
                 error && (error.toLowerCase().includes("cpf") || error.toLowerCase().includes("usuário") || error.toLowerCase().includes("campos")) ? styles.inputError : ""
               }`}
