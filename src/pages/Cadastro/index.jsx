@@ -188,7 +188,7 @@ function Cadastro() {
               id="senha"
               ref={passwordRef}
               type="password"
-              placeholder="Crie uma senha (mín. 6 caracteres)"
+              placeholder="Crie uma senha (mín. 8 caracteres)"
               required
               disabled={loading}
               className={`${styles.inputField} ${error && (error.toLowerCase().includes("senha") || error.toLowerCase().includes("obrigatórios")) ? styles.inputError : ""}`}

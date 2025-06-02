@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import HomePage from "./pages/Home/homepage";
 import Cadastro from './pages/Cadastro';
 import Login from './pages/Login';
+import ResetPasswordConfirmPage from "./pages/Login/ResetPasswordConfirmPage";
 import Home from "./pages/PaginaInicial";
 import Quadras from "./pages/Quadras";
 import AgendarQuadra from "./pages/Agendamentos/Agendar/agendar";
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         {/* Rota pública (sem navbar) */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/redefinir-senha/:token" element={<ResetPasswordConfirmPage />} />
 
         {/* Rotas públicas com navbar */}
         <Route element={<LayoutComNavbar />}>

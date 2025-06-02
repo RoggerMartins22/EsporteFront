@@ -46,7 +46,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   margin-top: 1rem;
 }
 
@@ -66,28 +66,31 @@
 .loginForm {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .formGroup {
   text-align: left;
   width: 100%;
+  margin-bottom: 0.25rem;
 }
 
 .formLabel {
-  display: block;
+  display: inline-flex; 
+  align-items: center;
+  gap: 0.4rem;
   font-weight: 600;
   color: var(--color-text-medium);
-  margin-bottom: 0.6rem;
-  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .inputField {
   width: 100%;
-  padding: 0.85rem 1.1rem;
+  padding: 0.8rem 1rem;
   border-radius: 0.6rem;
   border: 1px solid var(--color-border-subtle);
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--color-text-dark);
   background-color: #FFFFFF;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -120,13 +123,13 @@
   background-color: #FFCDD2;
   border: 1px solid #EF9A9A;
   border-left: 4px solid #D32F2F;
-  padding: 0.8rem 1rem;
+  padding: 0.7rem 0.9rem;
   border-radius: 0.6rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 0.9rem;
-  margin-top: -0.5rem;
+  font-size: 0.85rem;
+  margin-top: -0.25rem; 
   margin-bottom: 0.25rem;
   text-align: left;
 }
@@ -136,13 +139,51 @@
   color: #D32F2F;
   flex-shrink: 0;
 }
+.errorIconModal {
+  font-size: 1.1em;
+  color: #D32F2F;
+  flex-shrink: 0;
+}
+.successIconModal {
+  font-size: 1.1em;
+  color: var(--color-primary-medium);
+  flex-shrink: 0;
+}
+
+.actionsRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.75rem; 
+  margin-top: -0.5rem; 
+}
+
+.forgotPasswordLink {
+  background: none;
+  border: none;
+  color: var(--color-accent-blue);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.2rem 0;
+}
+.forgotPasswordLink:disabled {
+  color: var(--color-text-medium);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.forgotPasswordLink:hover:not(:disabled) {
+  text-decoration: underline;
+  color: #085e98;
+}
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  padding: 0.9rem 2.2rem;
+  padding: 0.85rem 2rem;
   border-radius: 0.6rem;
   font-weight: 700;
   text-decoration: none;
@@ -151,7 +192,7 @@
   box-shadow: 0 4px 8px var(--color-shadow-light);
   white-space: nowrap;
   width: 100%;
-  font-size: 1.05rem;
+  font-size: 1rem;
   box-sizing: border-box;
   border: 2px solid transparent;
 }
@@ -179,8 +220,8 @@
 }
 
 .signupPrompt {
-  margin-top: 1.8rem;
-  font-size: 0.95rem;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
   color: var(--color-text-medium);
 }
 
@@ -202,51 +243,140 @@
   font-size: 1.05em;
 }
 
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: var(--color-text-light);
+  padding: 2rem 2.25rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px var(--color-shadow-strong);
+  text-align: center;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+}
+
+.modalCloseButton {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--color-text-medium);
+  cursor: pointer;
+  padding: 0.2rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+.modalCloseButton:hover {
+  color: var(--color-text-dark);
+}
+
+.modalHeaderIcon {
+  font-size: 2.2rem;
+  color: var(--color-accent-blue);
+  margin-bottom: 0.6rem;
+}
+
+.modalTitle {
+  font-size: 1.6rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+}
+
+.modalSubtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-medium);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.modalMessage {
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.6rem;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: left;
+}
+
+.modalMessageSuccess {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  border: 1px solid var(--color-primary-medium);
+  border-left: 4px solid var(--color-primary-medium);
+}
+
+.modalMessageError {
+  color: #B71C1C;
+  background-color: #FFCDD2;
+  border: 1px solid #EF9A9A;
+  border-left: 4px solid #D32F2F;
+}
+
+.btnModalSubmit {
+  background-color: var(--color-accent-blue);
+  color: var(--color-text-light);
+  border-color: var(--color-accent-blue);
+  font-size: 0.95rem;
+  padding: 0.8rem 1.5rem;
+}
+.btnModalSubmit:hover:not(:disabled) {
+  background-color: #085e98;
+  border-color: #085e98;
+  transform: translateY(-2px);
+}
+.btnModalSubmit:disabled {
+  background-color: var(--color-border-subtle);
+  color: var(--color-text-medium);
+  border-color: var(--color-border-subtle);
+  cursor: not-allowed;
+}
+
 @media (max-width: 600px) {
-  .loginContainer {
-    padding: 2rem 1.5rem;
-    margin: 1rem;
-  }
-
-  .backLink {
-    top: 1rem;
-    left: 1rem;
-    font-size: 0.85rem;
-  }
-
-  .formHeader {
-    margin-top: 2rem; 
-  }
-
-  .loginTitle {
-    font-size: 1.9rem;
-  }
-
-  .headerIcon {
-    font-size: 2.5rem;
-  }
-
-  .inputField {
-    padding: 0.8rem 1rem;
-    font-size: 0.95rem;
-  }
-
-  .btn {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  .formLabel {
-    font-size: 0.9rem;
-  }
-
-  .errorMessage {
-    font-size: 0.85rem;
-  }
+  .loginContainer { padding: 2rem 1.5rem; margin: 1rem; }
+  .backLink { top: 1rem; left: 1rem; font-size: 0.85rem; }
+  .formHeader { margin-top: 1.5rem; }
+  .loginTitle { font-size: 1.9rem; }
+  .headerIcon { font-size: 2.5rem; }
+  .inputField { padding: 0.75rem 0.9rem; font-size: 0.9rem; }
+  .btn { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
+  .formLabel { font-size: 0.85rem; }
+  .errorMessage { font-size: 0.8rem; }
+  .forgotPasswordLink { font-size: 0.8rem; }
+  .modalContent { padding: 1.5rem; max-width: calc(100% - 2rem); }
+  .modalTitle { font-size: 1.4rem; }
+  .modalSubtitle { font-size: 0.85rem; }
+  .btnModalSubmit { padding: 0.75rem 1.25rem; font-size: 0.9rem; }
 }
 
 @media (max-width: 400px) {
-    .formHeader {
-        margin-top: 2.5rem; 
-    }
+  .formHeader { margin-top: 2rem; }
+  .loginContainer { padding: 1.5rem 1rem; }
+  .modalContent { padding: 1.25rem; }
+  .modalTitle { font-size: 1.3rem; }
+  .modalSubtitle { font-size: 0.8rem; }
 }
