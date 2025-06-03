@@ -5,15 +5,16 @@ function PrivateRoute({ children }) {
   const tokenExpiration = localStorage.getItem("token_expiration");
 
   if (!token || !tokenExpiration) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
-  const now = new Date().getTime();
-  if (now > parseInt(tokenExpiration, 10)) {
-    // token expirou
+  const now = Date.now();
+  const expirationTimestamp = parseInt(tokenExpiration, 10);
+
+  if (isNaN(expirationTimestamp) || now > expirationTimestamp) {
     localStorage.removeItem("token");
     localStorage.removeItem("token_expiration");
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;

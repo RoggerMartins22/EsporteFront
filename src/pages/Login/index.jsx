@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { parseISO } from 'date-fns';
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api.js";
 import styles from "./login.module.css";
@@ -33,18 +34,26 @@ function Login() {
   const forgotCpfInputRef = useRef(null);
   const forgotEmailInputRef = useRef(null);
 
-
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      navigate("/home");
+    const token = localStorage.getItem("token");
+    const expirationString = localStorage.getItem("token_expiration");
+
+    if (token && expirationString) {
+      const expirationTimestamp = Number(expirationString);
+      if (!isNaN(expirationTimestamp) && Date.now() < expirationTimestamp) {
+        navigate("/home");
+      } else {
+        localStorage.removeItem("token");
+        localStorage.removeItem("token_expiration");
+      }
     }
   }, [navigate]);
 
   useEffect(() => {
     if (showForgotPasswordModal) {
-        forgotCpfInputRef.current?.focus();
+      forgotCpfInputRef.current?.focus();
     } else {
-        cpfInputRef.current?.focus();
+      cpfInputRef.current?.focus();
     }
   }, [showForgotPasswordModal]);
 
@@ -94,8 +103,10 @@ function Login() {
       });
 
       localStorage.setItem("token", data.access_token);
-      const expirationTimestamp = new Date().getTime() + (data.expires_in * 1000);
-      localStorage.setItem("token_expiration", expirationTimestamp.toString());
+      const expirationDateString = data.exp;
+      const dateObject = parseISO(expirationDateString);
+      const expirationTimestampMillis = dateObject.getTime();
+      localStorage.setItem("token_expiration", expirationTimestampMillis.toString());
 
       navigate("/home");
     } catch (err) {
