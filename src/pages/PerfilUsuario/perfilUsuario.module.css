@@ -1,59 +1,52 @@
 :root {
-  /* Paleta de Cores - Verde Esmeralda e Neutros (Limpa e Profissional) */
-  --color-primary-main: #27ae60;       /* Verde principal */
-  --color-primary-dark: #219150;       /* Verde mais escuro para hover/ativos */
-  --color-primary-light: #e0f2e0;      /* Verde muito claro para fundos sutis */
+  --color-primary-main: #27ae60;
+  --color-primary-dark: #219150;
+  --color-primary-light: #e0f2e0;
 
-  --color-danger-red: #e74c3c;         /* Vermelho para erros */
-  --color-success-green: #2ecc71;      /* Verde para mensagens de sucesso */
+  --color-danger-red: #e74c3c;
+  --color-success-green: #2ecc71;
 
-  --color-text-dark: #333333;          /* Texto principal forte */
-  --color-text-medium: #666666;        /* Texto secundário e labels */
-  --color-text-light: #ffffff;         /* Para texto em fundos escuros */
+  --color-text-dark: #333333;
+  --color-text-medium: #666666;
+  --color-text-light: #ffffff;
 
-  --color-bg-page: #f8f9fa;            /* Fundo geral da página */
-  --color-bg-card: #ffffff;            /* Fundo para cards e inputs */
-  --color-border-default: #e9ecef;     /* Borda padrão, muito sutil */
+  --color-bg-page: #f8f9fa;
+  --color-bg-card: #ffffff;
+  --color-border-default: #e9ecef;
 
-  /* Sombras - Minimalistas e elegantes, com profundidade suave */
   --shadow-xs: 0 1px 3px rgba(0,0,0,0.05);
   --shadow-sm: 0 4px 10px rgba(0,0,0,0.08);
   --shadow-md: 0 8px 25px rgba(0,0,0,0.12);
 
-  /* Tipografia - 'Inter' para legibilidade e modernidade */
   --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* Espaçamento e Bordas */
   --spacing-unit: 0.25rem;
-  --border-radius-sm: 0.5rem;   /* Pequenos arredondamentos */
-  --border-radius-md: 0.75rem;  /* Médios arredondamentos para botões/inputs */
-  --border-radius-lg: 1.25rem;  /* Grandes arredondamentos para cards */
-  --border-radius-pill: 9999px; /* Totalmente redondo */
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 0.75rem;
+  --border-radius-lg: 1.25rem;
+  --border-radius-pill: 9999px;
 
-  /* Tamanhos (Ajustados para serem um pouco maiores, mas ainda compactos e usuais) */
   --header-height: 4.5rem;
-  --section-title-size: 2.3rem; /* Um pouco maior que 2.2rem */
+  --section-title-size: 2.3rem;
   --card-padding: 2.2rem;
-  --input-value-size: 1.05rem; /* Um pouco maior que 1rem */
-  --label-size: 0.9rem; /* Um pouco maior que 0.85rem */
-  --icon-size-sm: 0.95rem; /* Um pouco maior que 0.9rem */
-  --icon-size-md: 1.15rem; /* Um pouco maior que 1.1rem */
-  --icon-size-lg: 1.35rem; /* Um pouco maior que 1.3rem */
-  --btn-padding-y: 0.8rem; /* Um pouco maior que 0.7rem */
-  --btn-padding-x: 1.4rem; /* Um pouco maior que 1.25rem */
-  --btn-font-size: 0.95rem; /* Um pouco maior que 0.9rem */
+  --input-value-size: 1.05rem;
+  --label-size: 0.9rem;
+  --icon-size-sm: 0.95rem;
+  --icon-size-md: 1.15rem;
+  --icon-size-lg: 1.35rem;
+  --btn-padding-y: 0.8rem;
+  --btn-padding-x: 1.4rem;
+  --btn-font-size: 0.95rem;
 
-  /* Transições - MAIS SUAVES e rápidas */
-  --transition-ultra-fast: 0.1s ease-out; /* Para feedback instantâneo */
-  --transition-fast: 0.2s ease-out;      /* Para a maioria das interações */
-  --transition-default: 0.3s ease-out;    /* Para elementos maiores como cards */
+  --transition-ultra-fast: 0.1s ease-out;
+  --transition-fast: 0.2s ease-out;
+  --transition-default: 0.3s ease-out;
 }
 
-/* Reset Básico */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -70,7 +63,6 @@ body {
   background-color: var(--color-bg-page);
 }
 
-/* Page Wrapper */
 .pageWrapper {
   display: flex;
   flex-direction: column;
@@ -80,20 +72,18 @@ body {
   overflow-x: hidden;
 }
 
-/* Profile Container - Centraliza o conteúdo e define largura */
 .profileContainer {
   flex: 1;
   padding: 2.5rem 1rem;
-  max-width: 650px; /* Largura ligeiramente ajustada */
+  max-width: 650px;
   width: 95%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 1.8rem; /* Espaçamento entre blocos */
+  gap: 1.8rem;
   align-items: center;
 }
 
-/* Header e Título */
 .profileHeader {
   width: 100%;
   text-align: center;
@@ -110,7 +100,6 @@ body {
   line-height: 1.2;
 }
 
-/* Profile Card - O principal container visual */
 .profileCard {
   background-color: var(--color-bg-card);
   border-radius: var(--border-radius-lg);
@@ -121,18 +110,17 @@ body {
   flex-direction: column;
   align-items: center;
   position: relative;
-  transition: transform var(--transition-default), box-shadow var(--transition-default); /* Transições explícitas */
+  transition: transform var(--transition-default), box-shadow var(--transition-default);
   border: 1px solid var(--color-border-default);
 }
 
 .profileCard:hover {
-  transform: translateY(-4px); /* Elevação suave no hover */
-  box-shadow: var(--shadow-lg); /* Sombra mais pronunciada */
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Profile Avatar - Ponto focal visual */
 .profileAvatar {
-  font-size: 5rem; /* Tamanho do ícone do avatar */
+  font-size: 5rem;
   color: var(--color-primary-main);
   margin-bottom: 2rem;
   border-radius: var(--border-radius-pill);
@@ -146,26 +134,24 @@ body {
 }
 
 .profileAvatar:hover {
-  transform: scale(1.04); /* Aumento suave no hover */
+  transform: scale(1.04);
   box-shadow: var(--shadow-md);
 }
 
-/* Grupo de Informações (Nome, Email, CPF) */
 .profileInfoGroup {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Espaçamento entre os itens de informação */
+  gap: 1rem;
   margin-bottom: 1.8rem;
 }
 
-/* Item Individual de Informação */
 .profileInfoItem {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  padding: 0.7rem 0; /* Padding vertical, sem horizontal */
+  padding: 0.7rem 0;
   border-bottom: 1px solid var(--color-border-default);
   transition: background-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), padding var(--transition-fast), margin var(--transition-fast), border-radius var(--transition-fast);
   position: relative;
@@ -175,24 +161,20 @@ body {
   border-bottom: none;
 }
 
-/* NOVO: Ajuste para remover a "tremedeira" no hover */
 .profileInfoItem:hover:not(.isEditing) {
   background-color: var(--color-primary-light);
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-xs);
-  /* Removido padding/margin changes do hover para suavizar */
-  /* Mantido para o estado isEditing, que é uma mudança de estado mais "fixa" */
 }
 
 .profileInfoItem.isEditing {
   background-color: var(--color-primary-light);
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-xs);
-  padding: 0.7rem 0.8rem; /* Padding horizontal no modo de edição */
-  margin: -0.2rem -0.8rem; /* Ajuste para compensar padding */
+  padding: 0.7rem 0.8rem;
+  margin: -0.2rem -0.8rem;
 }
 
-/* Label dos Campos */
 .infoLabel {
   font-size: var(--label-size);
   color: var(--color-text-medium);
@@ -209,12 +191,11 @@ body {
   font-size: var(--icon-size-sm);
 }
 
-/* Conteúdo do Campo (Valor/Input e Ações) */
 .fieldContent {
   display: flex;
   align-items: center;
   width: 100%;
-  gap: 0.7rem; /* Espaçamento entre o valor/input e os botões */
+  gap: 0.7rem;
   position: relative;
 }
 
@@ -225,14 +206,13 @@ body {
   align-items: center;
 }
 
-/* Valor de Exibição (não editando) */
 .infoValue {
   font-size: var(--input-value-size);
   color: var(--color-text-dark);
   font-weight: var(--font-weight-regular);
-  padding: 0.35rem 0; /* Alinha visualmente com o input */
+  padding: 0.35rem 0;
   text-align: left;
-  min-height: 38px; /* Altura consistente com input, ligeiramente maior */
+  min-height: 38px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -240,7 +220,6 @@ body {
   word-break: break-word;
 }
 
-/* Valor Somente Leitura (CPF) */
 .readOnlyValue {
   color: var(--color-text-medium);
   font-style: italic;
@@ -248,16 +227,15 @@ body {
   padding-bottom: 0.1rem;
 }
 
-/* Campo de Input */
 .profileInput {
   font-family: var(--font-family-base);
   font-size: var(--input-value-size);
   color: var(--color-text-dark);
-  padding: 0.45rem 0.7rem; /* Padding ligeiramente ajustado */
+  padding: 0.45rem 0.7rem;
   border: 1px solid var(--color-border-default);
   border-radius: var(--border-radius-sm);
   width: 100%;
-  min-height: 38px; /* Consistente com .infoValue */
+  min-height: 38px;
   transition: var(--transition-fast);
   box-shadow: var(--shadow-xs);
   background-color: var(--color-bg-card);
@@ -266,7 +244,7 @@ body {
 .profileInput:focus {
   outline: none;
   border-color: var(--color-primary-main);
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25), var(--shadow-sm); /* Anel de foco mais definido */
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25), var(--shadow-sm);
   background-color: var(--color-text-light);
 }
 
@@ -283,7 +261,6 @@ body {
   border-color: var(--color-danger-red);
 }
 
-/* Ícones de Validação */
 .validationIcon {
   position: absolute;
   right: 0.6rem;
@@ -305,7 +282,6 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Botões de Ação de Campo (Editar, Salvar, Cancelar) */
 .fieldActions {
   display: flex;
   gap: 0.3rem;
@@ -329,7 +305,7 @@ body {
 
 .iconButton.editButton {
   opacity: 0;
-  transform: translateX(8px); /* Deslocamento mais sutil */
+  transform: translateX(8px);
   transition: opacity var(--transition-default), transform var(--transition-default);
 }
 
@@ -364,7 +340,6 @@ body {
   animation: spin 1s linear infinite;
 }
 
-/* Mensagens de Feedback (Sucesso/Erro) */
 .successMessage, .errorMessage {
     display: flex;
     align-items: center;
@@ -402,7 +377,6 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Contêiner de Ações Inferior (Botão Voltar) */
 .actionsContainer {
   display: flex;
   justify-content: center;
@@ -411,7 +385,6 @@ body {
   width: 100%;
 }
 
-/* Botões Principais */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -470,7 +443,6 @@ body {
     animation: spin 1s linear infinite;
 }
 
-/* Feedback de Página Inteira (Carregando/Erro) */
 .feedbackContainer {
   display: flex;
   flex-direction: column;
@@ -514,14 +486,13 @@ body {
   font-weight: var(--font-weight-medium);
 }
 
-/* Media Queries para Responsividade */
 @media (max-width: 768px) {
   .profileContainer {
     padding: 2rem 0.8rem;
     gap: 1.2rem;
   }
   .sectionTitle {
-    font-size: 1.9rem; /* Ajuste para telas menores */
+    font-size: 1.9rem;
   }
   .profileCard {
     padding: 1.8rem;
@@ -547,9 +518,9 @@ body {
     margin-bottom: 0.2rem;
   }
   .infoValue, .profileInput {
-    font-size: 0.98rem; /* Ajustado para ser legível no mobile */
+    font-size: 0.98rem;
     padding: 0.35rem 0.5rem;
-    min-height: 35px; /* Altura ajustada para mobile */
+    min-height: 35px;
   }
   .validationIcon {
     right: 0.4rem;

@@ -17,12 +17,11 @@ const validateName = (name) => {
   return name.trim().length >= 3;
 };
 
-// Função para formatar o CPF
 const formatCpf = (cpf) => {
   if (!cpf) return '';
-  const cleanCpf = String(cpf).replace(/\D/g, ''); // Garante que é string e remove não-dígitos
+  const cleanCpf = String(cpf).replace(/\D/g, '');
   if (cleanCpf.length !== 11) {
-    return cleanCpf; // Retorna sem formatação se não tiver 11 dígitos
+    return cleanCpf;
   }
   return cleanCpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
 };
@@ -369,7 +368,6 @@ function UserProfile() {
               </label>
               <div className={styles.fieldContent}>
                 <div className={styles.fieldValueWrapper}>
-                  {/* Aplicação da formatação do CPF */}
                   <p className={`${styles.infoValue} ${styles.readOnlyValue}`}>{formatCpf(userData.cpf)}</p>
                 </div>
                 <div className={styles.fieldActions}>
