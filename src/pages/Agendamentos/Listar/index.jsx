@@ -146,7 +146,7 @@ function ListarAgendamentos() {
                     </div>
                     <div className={styles.itemActions}>
                       <Link
-                        to={`/agendamento/${agendamento.id_agendamento}/opcoes`}
+                        to={`/agendamento/opcoes/${agendamento.id_agendamento}`}
                         className={`${styles.btn} ${styles.btnOpcoes}`}
                       >
                         Opções
