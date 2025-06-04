@@ -18,33 +18,46 @@ function Navbar() {
     return null;
   }
 
-  const getNavLinkClass = ({ isActive, baseClass = "navbar-link" }) => {
-    return `${baseClass}${isActive ? " active" : ""}`;
+  const getNavLinkClass = ({ isActive }) => {
+    return `navbar-link${isActive ? " active" : ""}`;
   };
 
   return (
     <header className="navbar-header">
       <div className="navbar-container">
-        <div className="navbar-logo-group">
-          <img
-            src={LOGO_URL}
-            alt="Logo Prefeitura de Rio Verde"
-            className="navbar-logo"
-          />
-          <h1 className="navbar-title">Esporte+</h1>
-        </div>
+        <NavLink
+          to="/home"
+          className="navbar-logo-group-link"
+          aria-label="Página inicial Esporte+"
+        >
+          <div className="navbar-logo-group">
+            <img
+              src={LOGO_URL}
+              alt="Logo Prefeitura de Rio Verde"
+              className="navbar-logo"
+            />
+            <h1 className="navbar-title">Esporte+</h1>
+          </div>
+        </NavLink>
+
         <nav className="navbar-nav">
           <NavLink
             to="/quadras"
-            className={({ isActive }) => getNavLinkClass({ isActive, baseClass: "navbar-link" })}
+            className={getNavLinkClass}
           >
             Quadras
           </NavLink>
           <NavLink
             to="/listar"
-            className={({ isActive }) => getNavLinkClass({ isActive, baseClass: "navbar-link" })}
+            className={getNavLinkClass}
           >
             Agendamentos
+          </NavLink>
+          <NavLink
+            to="/perfil"
+            className={getNavLinkClass}
+          >
+            Perfil
           </NavLink>
           <button
             onClick={handleLogout}

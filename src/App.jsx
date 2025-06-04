@@ -9,7 +9,8 @@ import Quadras from "./pages/Quadras";
 import AgendarQuadra from "./pages/Agendamentos/Agendar/agendar";
 import ListarAgendamentos from "./pages/Agendamentos/Listar/index";
 import OpcoesAgendamento from "./pages/Agendamentos/Opções/opcoesAgendamentos";
-import Navbar from "./components/NavBar/Navbar";
+import Navbar from "./components/SideBar/Navbar";
+import Footer from "./components/Footer/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 
 function LayoutComNavbar() {
@@ -17,6 +18,7 @@ function LayoutComNavbar() {
     <>
       <Navbar />
       <Outlet />
+      <Footer />
     </>
   );
 }
@@ -78,7 +80,7 @@ function App() {
             }
           />
           <Route
-            path="/agendamento/:id_agendamento/opcoes"
+            path="/agendamento/opcoes/:id_agendamento"
             element={
               <PrivateRoute>
                 <OpcoesAgendamento />

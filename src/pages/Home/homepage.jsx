@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { FaInstagram, FaCheckCircle, FaUserPlus, FaSignInAlt, FaArrowRight } from "react-icons/fa";
 import styles from "./homePage.module.css";
+import Footer from '../../components/Footer/Footer';
 
 function Home() {
-
   return (
     <div className={styles.homeContainer}>
       <header className={styles.homeHeader}>
@@ -87,7 +87,7 @@ function Home() {
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1343.1947997085804!2d-50.90837387074805!3d-17.785651968012445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9361db6642265b6d%3A0xc586c45fc2f3e5ff!2sPrefeitura%20Municipal%20de%20Rio%20Verde!5e0!3m2!1spt-BR!2sbr!4v1748434973746!5m2!1spt-BR!2sbr"
                 width="100%"
-                style={{ border: 0, borderRadius: '1.2rem', height: '100%' }} 
+                style={{ border: 0, borderRadius: '1.2rem', height: '100%' }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -97,19 +97,7 @@ function Home() {
           </div>
         </section>
       </main>
-
-      <footer className={styles.homeFooter}>
-        <span>© 2025 Prefeitura de Rio Verde - Sistema Esporte+. Todos os direitos reservados.</span>
-        <a
-          href="https://www.instagram.com/prefrioverde/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.footerIcon}
-          aria-label="Instagram da Prefeitura de Rio Verde"
-        >
-          <FaInstagram size={24} />
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }

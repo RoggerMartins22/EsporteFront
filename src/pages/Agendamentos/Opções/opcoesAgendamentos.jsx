@@ -37,7 +37,6 @@ function OpcoesAgendamento() {
   const [loadingRenovar, setLoadingRenovar] = useState(false);
   const [loadingCancelar, setLoadingCancelar] = useState(false);
 
-  // Restaurado para a lógica original: scroll é habilitado quando os dados carregam e o agendamento existe.
   useScrollEnabled(!loadingData && agendamento !== null);
 
   useEffect(() => {
@@ -48,7 +47,6 @@ function OpcoesAgendamento() {
       try {
         const { data } = await api.get(`/agendamentos/${id_agendamento}`);
         setAgendamento(data);
-        // Define a nova data apenas se o status for concluído
         if (data.status?.toLowerCase() === "concluído") {
           setNovaData(getMinDateForRenewal(data.data));
         }

@@ -267,30 +267,6 @@ body {
   box-shadow: 0 10px 30px var(--color-shadow-light);
 }
 
-.homeFooter {
-  background-color: var(--color-primary-dark);
-  padding: 2rem 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  font-size: 0.95rem;
-  color: var(--color-primary-light);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footerIcon {
-  color: var(--color-primary-medium);
-  transition: color 0.3s ease, transform 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-}
-
-.footerIcon:hover {
-  color: var(--color-text-light);
-  transform: scale(1.2);
-}
-
 @media (max-width: 1200px) {
   .homeHeader {
     padding: 1.2rem 2rem;
@@ -387,12 +363,6 @@ body {
   .contactContent {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-  .homeFooter {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.5rem 1rem;
-    font-size: 0.85rem;
   }
 }
 

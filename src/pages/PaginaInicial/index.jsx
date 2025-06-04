@@ -78,7 +78,7 @@ function Home() {
             </p>
 
             {nextAppointment ? (
-              <Link to={`/agendamento/${nextAppointment.id_agendamento}/opcoes`} className={styles.nextAppointmentCardLink}>
+              <Link to={`/agendamento/opcoes/${nextAppointment.id_agendamento}`} className={styles.nextAppointmentCardLink}>
                 <div className={styles.nextAppointmentCard}>
                   <div className={styles.nextAppointmentHeader}>
                     <FaCalendarAlt className={styles.nextAppointmentHeaderIcon} />
