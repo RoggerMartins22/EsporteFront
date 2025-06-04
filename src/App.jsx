@@ -2,13 +2,14 @@ import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import HomePage from "./pages/Home/homepage";
 import Cadastro from './pages/Cadastro';
 import Login from './pages/Login';
+import PerfilUsuario from './pages/PerfilUsuario/PerfilUsuario';
 import ResetPasswordConfirmPage from "./pages/Login/ResetPasswordConfirmPage";
 import Home from "./pages/PaginaInicial";
 import Quadras from "./pages/Quadras";
 import AgendarQuadra from "./pages/Agendamentos/Agendar/agendar";
 import ListarAgendamentos from "./pages/Agendamentos/Listar/index";
 import OpcoesAgendamento from "./pages/Agendamentos/Opções/opcoesAgendamentos";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/NavBar/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 
 function LayoutComNavbar() {
@@ -42,6 +43,16 @@ function App() {
               </PrivateRoute>
             }
           />
+
+          <Route
+            path="/perfil"
+            element={
+              <PrivateRoute>
+                <PerfilUsuario />
+              </PrivateRoute>
+            }
+          />
+
           <Route
             path="/quadras"
             element={
