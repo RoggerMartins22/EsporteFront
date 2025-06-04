@@ -159,7 +159,7 @@ function UserProfile() {
       } else if (fieldName === 'email') {
         setSavingEmail(true);
         const payload = { email: userData.email };
-        await api.put("/usuario-info/", payload);
+        await api.post("/usuario-info/alterar-email", payload);
         setOriginalEmail(userData.email);
         setIsEditingEmail(false);
         isSuccess = true;
