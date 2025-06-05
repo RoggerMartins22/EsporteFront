@@ -1,4 +1,3 @@
-/* Variáveis de cores e tipografia consistentes com homePage.module.css */
 :root {
   --color-primary-dark: #0A433A; /* Verde floresta profundo */
   --color-primary-medium: #1DA854; /* Verde esmeralda vibrante */
@@ -25,12 +24,11 @@
   --spacing-unit: 0.25rem;
   --border-radius-sm: 0.5rem;
   --border-radius-md: 0.8rem;
-  --border-radius-lg: 1.2rem; /* Para cards e seções */
+  --border-radius-lg: 1.2rem; 
 
-  --header-height: 4.5rem; /* Altura da navbar/header */
+  --header-height: 4.5rem;
 }
 
-/* Garante o box-sizing e remove margens/paddings padrão */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -51,11 +49,11 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background: linear-gradient(135deg, var(--color-background-light) 0%, #edf2f7 100%);
-  padding-top: var(--header-height); /* Espaço para a navbar fixa */
+  padding-top: var(--header-height); 
 }
 
 .quadrasContainer {
-  flex: 1; /* Ocupa o espaço restante */
+  flex: 1;
   padding: 3rem 2rem;
   max-width: 1200px;
   width: 95%;
@@ -65,31 +63,29 @@ body {
   gap: 3rem;
 }
 
-/* HEADER DA PÁGINA (Título e Filtro) */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
+  flex-wrap: wrap; 
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.sectionTitle { /* Reutiliza o estilo de título de seção da Home */
+.sectionTitle { 
   font-size: 2.8rem;
   font-weight: var(--font-weight-bold);
   color: var(--color-primary-dark);
-  text-align: left; /* Ajuste para o header da página */
-  margin: 0; /* Remove margem padrão */
+  text-align: left; 
+  margin: 0; 
   letter-spacing: -0.04em;
 }
 
 .filtroContainer {
   display: flex;
   align-items: center;
-  /* Removido 'gap' aqui para permitir controle mais fino entre label e select */
   background-color: var(--color-white);
-  padding: 0.75rem 1.25rem; /* Padding horizontal e vertical */
+  padding: 0.75rem 1.25rem;
   border-radius: var(--border-radius-md);
   border: 1px solid var(--color-border-subtle);
   box-shadow: 0 4px 8px var(--color-shadow-light);
@@ -107,9 +103,9 @@ body {
   font-weight: var(--font-weight-medium);
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Gap para o ícone e texto do label */
+  gap: 0.5rem;
   white-space: nowrap;
-  margin-right: -0.30rem; /* Margem para separar o label do select */
+  margin-right: -0.30rem;
 }
 
 .filtroIcon {
@@ -119,18 +115,16 @@ body {
 
 .filtroSelect {
   flex-grow: 1;
-  /* Ajuste de padding para a seta customizada */
-  padding: 0.4rem 1.8rem 0.4rem 0.5rem; /* Top/bottom, right (for arrow), left, right (for arrow) */
+  padding: 0.4rem 1.8rem 0.4rem 0.5rem; 
   border: none;
   background-color: transparent;
   font-family: var(--font-base);
   font-size: 1rem;
   color: var(--color-text-dark);
-  appearance: none; /* Remove seta padrão do select */
-  /* Seta customizada */
+  appearance: none; 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23424242'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 0.5rem center; /* Posição da seta */
+  background-position: right 0.5rem center;
   background-size: 1.2em;
   cursor: pointer;
 }
@@ -139,7 +133,6 @@ body {
   outline: none;
 }
 
-/* GRID DE QUADRAS */
 .quadrasGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -151,7 +144,7 @@ body {
   text-decoration: none;
   color: inherit;
   display: block;
-  height: 100%; /* Garante que o link ocupe toda a altura do grid item */
+  height: 100%; 
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -162,28 +155,28 @@ body {
   outline: none;
 }
 
-.quadraCard { /* Adota estilos de card da Home */
-  background-color: var(--color-white); /* Fundo branco para o card */
+.quadraCard { 
+  background-color: var(--color-white);
   border-radius: var(--border-radius-lg);
   padding: 2rem;
   filter: drop-shadow(0 10px 25px var(--color-shadow-light));
-  height: 100%; /* Permite que o card se estique */
+  height: 100%; 
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Para empurrar disponibilidade para o fundo */
+  justify-content: space-between; 
   border: 1px solid var(--color-border-subtle);
   transition: border-color 0.2s ease;
 }
 
 .quadraCard:hover {
-  border-color: var(--color-primary-medium); /* Borda fica verde no hover */
+  border-color: var(--color-primary-medium);
 }
 
 .quadraCardDisabled {
   opacity: 0.7;
   cursor: not-allowed;
-  filter: grayscale(80%) drop-shadow(0 10px 25px var(--color-shadow-light)); /* Visualmente indica desativação */
-  pointer-events: none; /* Desativa eventos de mouse */
+  filter: grayscale(80%) drop-shadow(0 10px 25px var(--color-shadow-light)); 
+  pointer-events: none;
 }
 
 .cardContent {
@@ -200,7 +193,7 @@ body {
 
 .quadraInfo, .esporteInfo {
   display: flex;
-  align-items: flex-start; /* Alinha o texto ao topo se houver quebra de linha */
+  align-items: flex-start; 
   gap: 0.8rem;
   font-size: 1rem;
   color: var(--color-text-medium);
@@ -210,8 +203,8 @@ body {
 .cardInfoIcon {
   color: var(--color-primary-medium);
   font-size: 1.1em;
-  flex-shrink: 0; /* Impede que o ícone diminua */
-  margin-top: 2px; /* Pequeno ajuste de alinhamento */
+  flex-shrink: 0;
+  margin-top: 2px; 
 }
 
 .esporteInfo strong {
@@ -221,8 +214,8 @@ body {
 
 .disponibilidadeContainer {
   display: flex;
-  justify-content: flex-end; /* Alinha o badge à direita */
-  margin-top: auto; /* Empurra para o final do card */
+  justify-content: flex-end;
+  margin-top: auto; 
 }
 
 .badge {
@@ -246,7 +239,7 @@ body {
 }
 
 .indisponivel {
-  background-color: var(--color-danger-red); /* Cor de perigo para indisponível */
+  background-color: var(--color-danger-red); 
 }
 
 .warningMessage {
@@ -257,13 +250,12 @@ body {
   text-align: center;
 }
 
-/* ESTADOS DE FEEDBACK (Loading, Erro, Vazio) */
 .feedbackContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 300px; /* Garante altura mínima para feedback */
+  min-height: 300px; 
   gap: 1.5rem;
   text-align: center;
   padding: 2rem;
@@ -294,7 +286,7 @@ body {
 }
 
 .emptyIcon {
-  color: var(--color-text-medium); /* Cor para ícone de vazio */
+  color: var(--color-text-medium); 
 }
 
 .feedbackMensagem {
@@ -308,7 +300,6 @@ body {
   font-weight: var(--font-weight-semibold);
 }
 
-/* BOTÕES (Consistentes com o Dashboard e Home) */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -358,7 +349,7 @@ body {
   outline: none;
 }
 
-.btnSmall { /* Botão menor, por exemplo, para "Limpar Filtro" */
+.btnSmall { 
   padding: 0.6rem 1.2rem;
   font-size: 0.9rem;
   gap: 0.5rem;
@@ -394,7 +385,7 @@ body {
   }
 
   .quadrasGrid {
-    grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    grid-template-columns: 1fr; 
     gap: 2rem;
   }
 
@@ -423,8 +414,8 @@ body {
 
   .filtroSelect {
     font-size: 0.9rem;
-    padding: 0.4rem 1.5rem 0.4rem 0.5rem; /* Ajusta padding da seta em telas menores */
-    background-position: right 0.3rem center; /* Ajusta posição da seta */
+    padding: 0.4rem 1.5rem 0.4rem 0.5rem;
+    background-position: right 0.3rem center;
   }
 
   .quadraCard {

@@ -157,12 +157,6 @@ function OpcoesAgendamento() {
 
         {agendamento && (
           <div className={styles.cardContent}>
-            {/* Logs para depuração do status */}
-            {console.log('Status do agendamento (bruto):', agendamento.status)}
-            {console.log('Status do agendamento (toLowerCase):', agendamento.status?.toLowerCase())}
-            {console.log('Condição "concluído" satisfeita?', agendamento.status?.toLowerCase() === "concluído")}
-            {console.log('Seção de ações visível?', agendamento.status?.toLowerCase() !== "cancelado" && agendamento.status?.toLowerCase() !== "renovado")}
-
             <div className={styles.detailSection}>
               <div className={styles.detailItem}>
                 <span className={styles.detailLabel}>Quadra</span>

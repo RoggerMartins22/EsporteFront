@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 function useScrollEnabled(shouldEnable = true) {
   useEffect(() => {
     if (shouldEnable) {
-      document.body.style.overflow = 'auto !important'; // Adicionado !important
+      document.body.style.overflow = 'auto !important';
     } else {
-      document.body.style.overflow = 'hidden !important'; // Adicionado !important
+      document.body.style.overflow = 'hidden !important';
     }
 
     return () => {

@@ -15,13 +15,15 @@
   --dashboard-title-size: 2.8rem;
   --dashboard-subtitle-size: 1.25rem;
   --dashboard-box-padding: 3rem 2.5rem;
-  --dashboard-button-gap: 1.5rem;
-  --dashboard-button-group-gap: 2rem;
-  --dashboard-button-padding: 1.2rem 2.5rem;
   --next-appointment-card-padding: 1.5rem;
 
-  --dashboard-button-small-padding: 0.8rem 1.5rem;
-  --dashboard-button-small-font-size: 0.95rem;
+  --dashboard-button-padding: 0.9rem 2rem;
+  --dashboard-button-font-size: 1rem;
+  --dashboard-button-icon-size: 1.1rem;
+  --dashboard-button-group-gap: 1.5rem;
+
+  --dashboard-button-small-padding: 0.7rem 1.4rem;
+  --dashboard-button-small-font-size: 0.9rem;
 }
 
 * {
@@ -46,7 +48,7 @@
   backdrop-filter: blur(10px);
   padding: var(--dashboard-box-padding);
   border-radius: 1.5rem;
-  filter: drop-shadow(0 15px 40px var(--color-shadow-light)); /* Usando drop-shadow aqui também */
+  filter: drop-shadow(0 15px 40px var(--color-shadow-light));
   text-align: center;
   width: 100%;
   max-width: 580px;
@@ -75,25 +77,22 @@
   line-height: 1.6;
 }
 
-/* NOVO ESTILO: Link que envolve o card */
 .nextAppointmentCardLink {
-  text-decoration: none; /* Remove sublinhado padrão do link */
-  color: inherit; /* Garante que a cor do texto seja herdada */
-  display: block; /* Faz o link ocupar toda a largura disponível */
-  width: 100%; /* Garante que o link se estenda */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
   margin-bottom: 2rem;
-  transition: transform 0.2s ease, filter 0.2s ease; /* Transição para o hover com filter */
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-/* NOVO ESTILO: Hover e active para o card clicável */
 .nextAppointmentCardLink:hover,
 .nextAppointmentCardLink:focus-visible {
-  transform: translateY(-5px); /* Efeito de elevação */
-  filter: drop-shadow(0 12px 30px var(--color-shadow-medium)); /* Sombra mais forte sem ponta */
-  outline: none; /* Remove outline padrão */
+  transform: translateY(-5px);
+  filter: drop-shadow(0 12px 30px var(--color-shadow-medium));
+  outline: none;
 }
 
-/* Estilo do card em si (sem link) */
 .nextAppointmentCard {
   background-color: var(--color-background-light);
   border: 1px solid var(--color-border-subtle);
@@ -101,11 +100,11 @@
   padding: var(--next-appointment-card-padding);
   width: 100%;
   text-align: left;
-  filter: drop-shadow(0 8px 20px var(--color-shadow-light)); /* Usando drop-shadow aqui também */
+  filter: drop-shadow(0 8px 20px var(--color-shadow-light));
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  cursor: pointer; /* Indica que é clicável */
+  cursor: pointer;
 }
 
 .nextAppointmentHeader {
@@ -136,9 +135,10 @@
 }
 
 .detailItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid; /* Usar Grid para melhor controle de colunas */
+  grid-template-columns: min-content 1fr; /* Coluna do rótulo se ajusta ao conteúdo, coluna do valor preenche o restante */
+  gap: 0.5rem; /* Espaçamento entre as colunas */
+  align-items: baseline; /* Alinha o texto na linha de base, útil se o valor quebrar a linha */
   font-size: 1rem;
   color: var(--color-text-dark);
 }
@@ -146,13 +146,15 @@
 .detailLabel {
   font-weight: 500;
   color: var(--color-text-medium);
-  min-width: 80px;
+  white-space: nowrap; /* Impede que o rótulo quebre a linha */
+  text-align: left; /* Garante alinhamento à esquerda para o rótulo dentro de sua célula de grid */
 }
 
 .detailValue {
   font-weight: 600;
   color: var(--color-text-dark);
-  text-align: right;
+  text-align: right; /* Alinha o conteúdo do valor à direita dentro da sua célula de grid */
+  word-break: break-word; /* Garante que palavras muito longas quebrem para caber no espaço */
 }
 
 .noAppointmentMessageContainer {
@@ -168,7 +170,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  filter: drop-shadow(0 4px 10px var(--color-shadow-light)); /* Usando drop-shadow aqui também */
+  filter: drop-shadow(0 4px 10px var(--color-shadow-light));
 }
 
 .noAppointmentIcon {
@@ -229,20 +231,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--dashboard-button-gap);
+  gap: 0.6rem;
   padding: var(--dashboard-button-padding);
   border-radius: 0.8rem;
   text-decoration: none;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: var(--dashboard-button-font-size);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
-  filter: drop-shadow(0 4px 8px var(--color-shadow-light)); /* Usando drop-shadow aqui também */
+  filter: drop-shadow(0 2px 5px var(--color-shadow-light));
   white-space: nowrap;
 }
 
 .btnIcon {
-  font-size: 1.3rem;
+  font-size: var(--dashboard-button-icon-size);
   line-height: 1;
 }
 
@@ -255,8 +257,8 @@
 .btnPrimary:hover,
 .btnPrimary:focus-visible {
   background-color: #179146;
-  transform: translateY(-4px);
-  filter: drop-shadow(0 8px 16px var(--color-shadow-medium)); /* Sombra mais forte */
+  transform: translateY(-2px);
+  filter: drop-shadow(0 5px 12px var(--color-shadow-medium));
   outline: none;
 }
 
@@ -271,8 +273,8 @@
   background-color: var(--color-primary-medium);
   color: var(--color-text-light);
   border-color: var(--color-primary-medium);
-  transform: translateY(-4px);
-  filter: drop-shadow(0 8px 16px var(--color-shadow-medium)); /* Sombra mais forte */
+  transform: translateY(-2px);
+  filter: drop-shadow(0 5px 12px var(--color-shadow-medium));
   outline: none;
 }
 
@@ -288,23 +290,17 @@
   padding: var(--dashboard-button-small-padding);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
-  filter: drop-shadow(0 2px 4px var(--color-shadow-light)); /* Usando drop-shadow aqui também */
+  filter: drop-shadow(0 2px 4px var(--color-shadow-light));
   white-space: nowrap;
   width: auto;
   align-self: center;
-}
-
-.btnSmallPrimary {
-  background-color: var(--color-primary-medium);
-  color: var(--color-text-light);
-  border: 2px solid var(--color-primary-medium);
 }
 
 .btnSmallPrimary:hover,
 .btnSmallPrimary:focus-visible {
   background-color: #179146;
   transform: translateY(-2px);
-  filter: drop-shadow(0 4px 10px var(--color-shadow-medium)); /* Sombra mais forte */
+  filter: drop-shadow(0 4px 10px var(--color-shadow-medium));
   outline: none;
 }
 
@@ -320,10 +316,9 @@
   color: var(--color-text-light);
   border-color: var(--color-primary-medium);
   transform: translateY(-2px);
-  filter: drop-shadow(0 4px 10px var(--color-shadow-medium)); /* Sombra mais forte */
+  filter: drop-shadow(0 4px 10px var(--color-shadow-medium));
   outline: none;
 }
-
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -334,6 +329,7 @@
   .dashboardButtonsGroup {
     flex-direction: row;
     justify-content: center;
+    gap: var(--dashboard-button-group-gap);
   }
 
   .btnDashboard {
@@ -353,15 +349,6 @@
 
   .dashboardBox {
     padding: 2.5rem 1.5rem;
-  }
-
-  .btnDashboard {
-    font-size: 1rem;
-    padding: 1rem 1.5rem;
-  }
-
-  .btnIcon {
-    font-size: 1.1rem;
   }
 
   .nextAppointmentCard, .noAppointmentMessageContainer {

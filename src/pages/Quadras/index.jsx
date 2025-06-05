@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../services/api";
 import styles from "./Quadras.module.css";
-import useScrollEnabled from '../../hooks/useScrollEnable'; // Verifique o nome correto do arquivo (useScrollEnabled ou useScrollEnable)
+import useScrollEnabled from '../../hooks/useScrollEnable';
 import {
   FaMapMarkerAlt, FaInfoCircle, FaCheckCircle, FaTimesCircle,
   FaArrowLeft, FaFilter, FaSpinner,
@@ -17,7 +17,7 @@ function Quadras() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useScrollEnabled(); // Habilita a rolagem para esta página
+  useScrollEnabled();
 
   useEffect(() => {
     async function loadData() {

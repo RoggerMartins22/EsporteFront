@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaCalendarAlt, FaSpinner, FaSadTear, FaTimesCircle, FaClock } from "react-icons/fa";
+import { FaCalendarAlt, FaSpinner, FaSadTear, FaTimesCircle } from "react-icons/fa";
 import { TbLayoutGrid } from "react-icons/tb";
 import api from "../../services/api";
 import styles from "./paginaInicial.module.css";
