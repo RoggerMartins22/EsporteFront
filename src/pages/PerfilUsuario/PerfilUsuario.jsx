@@ -188,7 +188,7 @@ function UserProfile() {
     return (
       <div className={styles.pageWrapper}>
         <div className={styles.feedbackContainer}>
-          <FaSpinner className={`${styles.feedbackIcon} ${styles.spinner}`} />
+          <FaSpinner className={`${styles.feedbackIcon} ${styles.spinnerIcon}`} />
           <p className={styles.feedbackMensagem}>Carregando informações do perfil...</p>
         </div>
       </div>

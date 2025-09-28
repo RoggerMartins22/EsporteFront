@@ -244,10 +244,11 @@
 }
 
 .btnIcon {
-  font-size: var(--dashboard-button-icon-size);
-  line-height: 1;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  vertical-align: middle;
 }
-
 .btnPrimary {
   background-color: var(--color-primary-medium);
   color: var(--color-text-light);
@@ -280,6 +281,7 @@
 
 .btnSmallPrimary, .btnSmallOutline {
   display: inline-flex;
+  color: #179146;;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -299,8 +301,8 @@
 .btnSmallPrimary:hover,
 .btnSmallPrimary:focus-visible {
   background-color: #179146;
+  color: var(--color-text-light);
   transform: translateY(-2px);
-  filter: drop-shadow(0 4px 10px var(--color-shadow-medium));
   outline: none;
 }
 
